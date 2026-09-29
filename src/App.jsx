@@ -20,8 +20,8 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>Student Placement</h1>
-        <p className="subtitle">Instantly calculate year groups & placements</p>
+        <h1>British Curriculum Age Grid</h1>
+        <p className="subtitle">Calculate the Academic Year Group</p>
       </header>
 
       <main className="card">
