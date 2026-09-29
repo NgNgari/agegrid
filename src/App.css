@@ -1,21 +1,233 @@
-/* Core Layout adjustments for secure fields and expanders */
+/* src/App.css */
 
+/* Global Variables & Colors */
+:root {
+  --bg-app: #f1f5f9;
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --primary: #2563eb;
+  --primary-light: #eff6ff;
+  --alert: #dc2626;
+  --border: #e2e8f0;
+  --radius-lg: 16px;
+  --radius-md: 10px;
+}
+
+/* 1. Global Safety Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text-main);
+}
+
+/* 2. Absolute Centering Wrapper */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 16px;
+}
+
+#root {
+  width: 100%;
+  max-width: 460px; /* Locks layout dimensions cleanly to phone width */
+}
+
+/* 3. Vertical Stack Layout */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Header Styles */
+.header {
+  text-align: center;
+  padding: 12px 0 4px 0;
+}
+
+.header h1 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Phone Display Card Wrapper */
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Input Row Configurations */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.input-field {
+  width: 100%;
+  height: 50px; /* Optimal mobile touch target height */
+  padding: 0 14px;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background-color: #ffffff;
+  color: var(--text-main);
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* Rearranged Top Results Formatting (Shows right after inputs) */
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.top-results {
+  margin-top: 4px;
+  border-top: none;
+  padding-top: 0;
+  margin-bottom: 4px;
+}
+
+.banner-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* Age Presentation Row */
+.age-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.age-badges-row {
+  display: flex;
+  gap: 6px;
+}
+
+.badge {
+  background: #ffffff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+
+.badge .num {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.badge .unit {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Academic Placement Year Banner */
+.group-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--primary-light);
+  padding: 12px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(37, 99, 235, 0.1);
+}
+
+.group-value {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--primary);
+}
+
+.group-value.alert {
+  color: var(--alert);
+}
+
+/* Collapsible Admin Portal Tab */
 .admin-auth-zone {
-  margin-top: 8px;
+  margin-top: 4px;
   border-top: 1px dashed var(--border);
-  padding-top: 14px;
+  padding-top: 8px;
+}
+
+.admin-trigger {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.admin-trigger:focus, .admin-trigger:active {
+  color: var(--text-main);
 }
 
 .pin-field {
+  background-color: #fafbfc;
   height: 44px;
   font-size: 0.9rem;
   letter-spacing: 0.05em;
-  background-color: #fffdfa; /* Distinguishes security input field */
+}
+
+/* Secondary Assessment Wrapper Block */
+.assessment-wrapper {
+  margin-top: 8px;
+  margin-bottom: 4px;
 }
 
 .assessment-locked-notice {
   text-align: center;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   font-weight: 500;
   color: var(--text-muted);
   background-color: #f8fafc;
@@ -24,11 +236,66 @@
   border: 1px solid var(--border);
 }
 
-/* Accordion Component Framework */
+/* Unlocked Assessments Panel */
+.assessment-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.assessment-section h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.assessment-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.assessment-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.test-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.test-value {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: #0284c7;
+}
+
+/* Empty State Placeholders */
+.placeholder-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  padding: 24px 12px;
+  border: 2px dashed var(--border);
+  border-radius: var(--radius-md);
+  line-height: 1.5;
+}
+
+/* Expanding Accordion Components */
 .accordion-section {
-  margin-top: 20px;
+  margin-top: 8px;
   border-top: 1px solid var(--border);
-  padding-top: 12px;
+  padding-top: 14px;
 }
 
 .accordion-trigger {
@@ -38,12 +305,12 @@
   align-items: center;
   background: none;
   border: none;
-  padding: 8px 0;
   font-size: 0.9rem;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--primary);
   cursor: pointer;
   outline: none;
+  padding: 4px 0;
 }
 
 .toggle-icon {
@@ -52,21 +319,40 @@
   color: var(--primary);
 }
 
-/* Key Stages Embedded Matrix Layout */
+/* Brief Transition Summaries Description Box */
+.ks-explanation-box {
+  background-color: #f8fafc;
+  border-left: 4px solid var(--primary);
+  padding: 12px;
+  border-radius: 4px var(--radius-md) var(--radius-md) 4px;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.ks-explanation-box strong {
+  color: var(--primary);
+}
+
+/* Key Stages Embedded Matrix Layout Table */
 .ks-table {
   display: flex;
   flex-direction: column;
   background: #f8fafc;
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
-  margin-top: 8px;
   overflow: hidden;
 }
 
 .ks-row {
   display: grid;
-  grid-template-columns: 1.2fr 2fr 1.1fr;
-  padding: 10px 12px;
+  grid-template-columns: 1fr 1.8fr 1fr;
+  padding: 12px;
   font-size: 0.8rem;
   border-bottom: 1px solid var(--border);
   align-items: center;
@@ -81,16 +367,74 @@
   font-weight: 700;
   color: var(--text-main);
   text-transform: uppercase;
-  font-size: 0.75rem;
-  letter-spacing: 0.02em;
+  font-size: 0.7rem;
+  letter-spacing: 0.03em;
 }
 
-/* Animation helpers for clean rendering transitions */
+/* Modern Signature Footer */
+.footer-modern {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 6px;
+  margin-top: 8px;
+}
+
+.dev-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dev-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.dev-tag {
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.8rem;
+}
+
+.dev-copy {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+/* Tap-Friendly WhatsApp Action Button */
+.whatsapp-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #22c55e; /* Premium WhatsApp Green */
+  color: #ffffff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.whatsapp-btn:active {
+  transform: scale(0.96);
+  background-color: #16a34a;
+}
+
+.wa-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Animation Helpers */
 .fade-in {
-  animation: fadeInEffect 0.3s ease-in-out forwards;
+  animation: fadeInEffect 0.25s ease-out forwards;
 }
 
 @keyframes fadeInEffect {
-  from { opacity: 0; transform: translateY(4px); }
+  from { opacity: 0; transform: translateY(3px); }
   to { opacity: 1; transform: translateY(0); }
 }
