@@ -43,18 +43,22 @@ export const assessmentMatrix = {
   "Too old": { cat4: "N/A",  pte1: "N/A",         pte2: "N/A" }
 };
 
-// 3. Main processing function (Calculates Group, and breakdown of Years, Months, Days)
+// Safety helper to enforce clean UTC execution
+function parseToUTCDate(dateStr) {
+  const [year, month, day] = dateStr.split('-').map(Number);
+  return new Date(Date.UTC(year, month - 1, day));
+}
+
+// 3. Main processing function 
 export function calculateAcademicDetails(dobString, selectedAcademicYear) {
   if (!dobString || !selectedAcademicYear) return null;
 
-  // Use split to avoid timezone shifting behavior of 'new Date(yyyy-mm-dd)'
-  const [birthYear, birthMonth, birthDay] = dobString.split('-').map(Number);
-  const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+  const birthDate = parseToUTCDate(dobString);
 
-  // Find the matching range row
+  // Find the matching range row with clean UTC comparisons
   const matchedRow = academicYearRules.find(rule => {
-    const fromDate = new Date(rule.from);
-    const toDate = new Date(rule.to);
+    const fromDate = parseToUTCDate(rule.from);
+    const toDate = parseToUTCDate(rule.to);
     return birthDate >= fromDate && birthDate <= toDate;
   });
 
@@ -69,25 +73,28 @@ export function calculateAcademicDetails(dobString, selectedAcademicYear) {
   const yearGroup = matchedRow[selectedAcademicYear];
   const assessments = assessmentMatrix[yearGroup] || { cat4: "N/A", pte1: "N/A", pte2: "N/A" };
 
-  // Calculate Academic Target Date (September 1st)
+  // Calculate chronological countdown targets
   const academicStartYear = parseInt(selectedAcademicYear.split('-'), 10);
   const targetYear = academicStartYear;
-  const targetMonth = 8; // September is index 8 (0-based)
+  const targetMonth = 8; // September (0-based)
   const targetDay = 1;
 
+  const birthYear = birthDate.getUTCFullYear();
+  const birthMonth = birthDate.getUTCMonth();
+  const birthDay = birthDate.getUTCDate();
+
   let years = targetYear - birthYear;
-  let months = targetMonth - (birthMonth - 1);
+  let months = targetMonth - birthMonth;
   let days = targetDay - birthDay;
 
-  // Adjust days if negative balance occurs
+  // Handle days borrowing
   if (days < 0) {
-    // Borrow days from the previous month (August, index 7, has 31 days)
-    const previousMonthDays = new Date(targetYear, targetMonth, 0).getDate();
+    const previousMonthDays = new Date(Date.UTC(targetYear, targetMonth, 0)).getUTCDate();
     days += previousMonthDays;
     months--;
   }
 
-  // Adjust months if negative balance occurs
+  // Handle months borrowing
   if (months < 0) {
     months += 12;
     years--;

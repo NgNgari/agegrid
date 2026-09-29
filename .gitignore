@@ -22,3 +22,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+# Dependencies
+node_modules/
+.pnpm-store/
+dist/
+
+# Keys & Security Secrets
+Keys
+Keys.pub
+*.pub
+*.pem
+*.key
+.env
+.env.local
+
+# System files
+.DS_Store
+Thumbs.db
+
