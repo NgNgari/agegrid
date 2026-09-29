@@ -423,11 +423,13 @@ body {
   transform: scale(0.96);
   background-color: #16a34a;
 }
-
 .wa-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  vertical-align: middle;
 }
+
 
 /* Animation Helpers */
 .fade-in {
