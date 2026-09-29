@@ -27,7 +27,10 @@ function App() {
       <main className="card">
         {/* Core Input Selectors */}
         <div className="form-group">
-          <label htmlFor="dob-input">Date of Birth</label>
+          <div className="label-row">
+            <label htmlFor="dob-input">Date of Birth</label>
+            <span className="format-hint">Format: DD / MM / YYYY</span>
+          </div>
           <input
             id="dob-input"
             type="date"
@@ -81,7 +84,7 @@ function App() {
           <div className="placeholder-text">
             {results?.yearGroup === "Out of Range" 
               ? "Date of birth falls out of supported academic ranges."
-              : "Select a valid birthdate to instantly calculate placement metrics."}
+              : "Select a birthdate (Day/Month/Year) to instantly calculate placement metrics."}
           </div>
         )}
 
@@ -202,6 +205,7 @@ function App() {
         </div>
       </main>
 
+      {/* Modern Signature Badge Area */}
       <footer className="footer-modern">
         <div className="dev-info">
           <span className="dev-name">Felix <span className="dev-tag">(FNg)</span></span>
@@ -217,7 +221,7 @@ function App() {
           <svg className="wa-icon" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.432 2.521 1.222 3.504l-.803 2.934 3.011-.79c.947.517 2.019.79 3.134.791h.002c3.181 0 5.767-2.586 5.768-5.766.001-3.18-2.585-5.765-5.766-5.765zm3.412 8.163c-.145.41-.741.77-1.021.803-.274.032-.619.167-1.794-.321-1.378-.572-2.253-1.979-2.322-2.071-.069-.092-.559-.743-.559-1.417 0-.674.352-.1.479-.145.127-.046.277-.113.37-.265.093-.152.127-.291.069-.41-.058-.119-.519-1.25-.711-1.713-.188-.452-.378-.39-.519-.397-.133-.007-.289-.008-.445-.008-.156 0-.41.059-.624.291-.214.232-.816.797-.816 1.944 0 1.147.833 2.254.949 2.41.116.157 1.64 2.504 3.972 3.511.555.24 1.011.393 1.353.5.558.177 1.066.152 1.468.092.447-.066 1.377-.562 1.572-1.104.195-.542.195-1.008.137-1.104-.058-.096-.214-.152-.447-.269z"/>
           </svg>
-          <span>Chat the Dev (on WhatsApp)</span>
+          <span>Chat Dev</span>
         </a>
       </footer>
     </div>
