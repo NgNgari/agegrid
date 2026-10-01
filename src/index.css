@@ -1,19 +1,31 @@
 /* src/App.css */
 
+/* =========================================================
+   GLOBAL VARIABLES
+========================================================= */
+
 :root {
   --bg-app: #f1f5f9;
   --bg-card: #ffffff;
+
   --text-main: #0f172a;
   --text-muted: #64748b;
+
   --primary: #2563eb;
   --primary-light: #eff6ff;
+
   --alert: #dc2626;
+
   --border: #e2e8f0;
+
   --radius-lg: 16px;
   --radius-md: 10px;
 }
 
-/* 1. Global Safety Reset */
+/* =========================================================
+   GLOBAL RESET
+========================================================= */
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -25,181 +37,394 @@ html,
 body {
   width: 100%;
   min-height: 100vh;
+
   background-color: var(--bg-app);
+
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
     sans-serif;
+
   color: var(--text-main);
 }
 
-/* 2. Absolute Centering Wrapper */
 body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
   padding: 16px;
 }
 
 #root {
   width: 100%;
-  max-width: 460px; /* Locks execution directly to phone layout scales */
+  max-width: 460px;
 }
 
-/* 3. Vertical Stack Layout */
+/* =========================================================
+   MAIN CONTAINER
+========================================================= */
+
 .container {
   display: flex;
   flex-direction: column;
+
   gap: 16px;
+
   width: 100%;
 }
 
-/* Header Sections */
+/* =========================================================
+   HEADER
+========================================================= */
+
 .header {
   text-align: center;
-  padding: 12px 0 4px 0;
+
+  padding: 12px 0 4px;
 }
 
 .header h1 {
   font-size: 1.6rem;
+
   font-weight: 800;
+
   letter-spacing: -0.02em;
+
   color: var(--text-main);
+
   margin-bottom: 6px;
 }
 
 .subtitle {
   font-size: 0.85rem;
+
   color: var(--text-muted);
+
   line-height: 1.4;
 }
 
-/* Phone Display Card Wrapper */
+/* =========================================================
+   MAIN CARD
+========================================================= */
+
 .card {
   background: var(--bg-card);
+
   border-radius: var(--radius-lg);
+
   padding: 20px;
+
   border: 1px solid var(--border);
+
   box-shadow:
     0 4px 6px -1px rgba(0, 0, 0, 0.05),
     0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
   display: flex;
   flex-direction: column;
+
   gap: 16px;
 }
 
-/* Input Row Configurations */
+/* =========================================================
+   FORM ELEMENTS
+========================================================= */
+
 .form-group {
   display: flex;
+
   flex-direction: column;
+
   gap: 6px;
+
   width: 100%;
 }
 
 .form-group label {
   font-size: 0.8rem;
+
   font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 0.04em;
+
   color: var(--text-muted);
 }
 
-.input-field {
+/* Label + Hint */
+
+.label-row {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
   width: 100%;
-  height: 50px; /* Optimal mobile touch target height */
-  padding: 0 14px;
-  font-size: 1rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background-color: #ffffff;
-  color: var(--text-main);
-  outline: none;
+
+  gap: 8px;
+}
+
+.format-hint {
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  color: var(--primary);
+
+  background-color: var(--primary-light);
+
+  padding: 3px 7px;
+
+  border-radius: 5px;
+
+  letter-spacing: 0.01em;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   DATE SELECTOR
+========================================================= */
+
+.date-select-row {
+  display: grid;
+
+  grid-template-columns:
+    0.8fr
+    1.8fr
+    1.1fr;
+
+  gap: 8px;
+
+  width: 100%;
+}
+
+.date-part {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 10px;
+
+  font-size: 0.95rem;
+
   font-family: inherit;
+
+  font-weight: 500;
+
+  color: var(--text-main);
+
+  background-color: #ffffff;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  outline: none;
+
+  cursor: pointer;
+
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.date-part:focus {
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.date-part:hover {
+  border-color: #cbd5e1;
+}
+
+.date-day,
+.date-year {
+  text-align: center;
+}
+
+.date-month {
+  text-align: left;
+}
+
+/* Clearly Written Date */
+
+.formatted-date {
+  font-size: 0.85rem;
+
+  font-weight: 700;
+
+  color: var(--primary);
+
+  padding-left: 2px;
+
+  margin-top: 2px;
+
+  line-height: 1.4;
+}
+
+/* =========================================================
+   GENERAL INPUTS
+========================================================= */
+
+.input-field {
+  width: 100%;
+
+  height: 50px;
+
+  padding: 0 14px;
+
+  font-size: 1rem;
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius-md);
+
+  background-color: #ffffff;
+
+  color: var(--text-main);
+
+  outline: none;
+
+  font-family: inherit;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .input-field:focus {
   border-color: var(--primary);
+
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
 }
 
-.admin-auth-zone {
-  margin-top: 4px;
-  border-top: 1px dashed var(--border);
-  padding-top: 16px;
-}
+/* =========================================================
+   RESULTS
+========================================================= */
 
-.pin-field {
-  background-color: #fafbfc;
-}
-
-/* Calculation Dynamic Feed Container */
 .results-container {
-  border-top: 2px dashed var(--border);
-  padding-top: 16px;
   display: flex;
+
   flex-direction: column;
+
   gap: 12px;
+}
+
+.top-results {
+  margin-top: 4px;
+
+  padding-top: 0;
+
+  margin-bottom: 4px;
 }
 
 .banner-label {
   font-size: 0.8rem;
+
   font-weight: 600;
+
   color: var(--text-muted);
 }
 
-/* Age Elements Row */
+/* =========================================================
+   AGE DISPLAY
+========================================================= */
+
 .age-banner {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   background: #f8fafc;
+
   padding: 12px;
+
   border-radius: var(--radius-md);
+
   border: 1px solid var(--border);
+
+  min-height: 58px;
 }
 
 .age-badges-row {
   display: flex;
+
   gap: 6px;
 }
 
 .badge {
   background: #ffffff;
+
   padding: 4px 8px;
+
   border-radius: 6px;
+
   border: 1px solid var(--border);
+
   display: flex;
+
   align-items: baseline;
+
   gap: 2px;
 }
 
 .badge .num {
   font-weight: 700;
+
   font-size: 1.1rem;
+
   color: var(--primary);
 }
 
 .badge .unit {
   font-size: 0.75rem;
+
   color: var(--text-muted);
 }
 
-/* Academic Placement Year Banner */
+.na-text {
+  font-size: 0.85rem;
+
+  color: var(--text-muted);
+
+  font-weight: 600;
+}
+
+/* =========================================================
+   YEAR GROUP
+========================================================= */
+
 .group-banner {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   background: var(--primary-light);
+
   padding: 12px;
+
   border-radius: var(--radius-md);
+
   border: 1px solid rgba(37, 99, 235, 0.1);
+
+  min-height: 58px;
 }
 
 .group-value {
   font-weight: 800;
+
   font-size: 1.25rem;
+
   color: var(--primary);
 }
 
@@ -207,107 +432,252 @@ body {
   color: var(--alert);
 }
 
-/* Locked Admin Warnings */
-.assessment-locked-notice {
-  text-align: center;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  background-color: #f8fafc;
-  padding: 14px;
-  border-radius: var(--radius-md);
-  border: 1px solid var(--border);
+/* =========================================================
+   ADMINISTRATOR PORTAL
+========================================================= */
+
+.admin-auth-zone {
+  margin-top: 4px;
+
+  border-top: 1px dashed var(--border);
+
+  padding-top: 8px;
 }
 
-/* Unlocked Assessments Panel */
+.admin-trigger {
+  color: var(--text-muted);
+
+  font-size: 0.85rem;
+}
+
+.admin-trigger:hover {
+  color: var(--text-main);
+}
+
+.admin-trigger:focus,
+.admin-trigger:active {
+  color: var(--text-main);
+}
+
+/* Password */
+
+.pin-field {
+  background-color: #fafbfc;
+
+  height: 46px;
+
+  font-size: 0.9rem;
+
+  letter-spacing: 0.05em;
+}
+
+.pin-field::placeholder {
+  color: #94a3b8;
+
+  letter-spacing: normal;
+}
+
+/* =========================================================
+   ASSESSMENTS
+========================================================= */
+
+.assessment-wrapper {
+  margin-top: 8px;
+
+  margin-bottom: 4px;
+}
+
+.assessment-locked-notice {
+  text-align: center;
+
+  font-size: 0.85rem;
+
+  font-weight: 500;
+
+  color: var(--text-muted);
+
+  background-color: #f8fafc;
+
+  padding: 14px;
+
+  border-radius: var(--radius-md);
+
+  border: 1px solid var(--border);
+
+  line-height: 1.4;
+}
+
 .assessment-section {
   display: flex;
+
   flex-direction: column;
+
   gap: 10px;
 }
 
 .assessment-section h3 {
   font-size: 0.8rem;
+
   font-weight: 700;
+
   text-transform: uppercase;
+
   letter-spacing: 0.04em;
+
   color: var(--text-muted);
+
   margin-top: 4px;
 }
 
 .assessment-stack {
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
 }
 
 .assessment-item {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   padding: 14px;
+
   background: #ffffff;
+
   border: 1px solid var(--border);
+
   border-radius: var(--radius-md);
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.assessment-item:hover {
+  border-color: #cbd5e1;
 }
 
 .test-name {
   font-weight: 600;
+
   font-size: 0.9rem;
+
   color: var(--text-main);
 }
 
 .test-value {
   font-weight: 700;
+
   font-size: 0.95rem;
+
   color: #0284c7;
 }
 
-/* Empty State Placeholders */
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
 .placeholder-text {
   text-align: center;
+
   font-size: 0.85rem;
+
   color: var(--text-muted);
+
   padding: 24px 12px;
+
   border: 2px dashed var(--border);
+
   border-radius: var(--radius-md);
+
   line-height: 1.5;
 }
 
-/* Expanding Accordion Components */
+/* =========================================================
+   ACCORDIONS
+========================================================= */
+
 .accordion-section {
   margin-top: 8px;
+
   border-top: 1px solid var(--border);
+
   padding-top: 14px;
 }
 
 .accordion-trigger {
   width: 100%;
+
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   background: none;
+
   border: none;
+
   font-size: 0.9rem;
+
   font-weight: 700;
+
   color: var(--primary);
+
   cursor: pointer;
+
   outline: none;
+
   padding: 4px 0;
+
+  text-align: left;
 }
 
-/* Styling for brief curriculum description block */
+.accordion-trigger:hover {
+  color: #1d4ed8;
+}
+
+.toggle-icon {
+  font-size: 1.2rem;
+
+  font-weight: bold;
+
+  color: var(--primary);
+
+  line-height: 1;
+}
+
+/* =========================================================
+   KEY STAGE EXPLANATION
+========================================================= */
+
 .ks-explanation-box {
   background-color: #f8fafc;
+
   border-left: 4px solid var(--primary);
+
   padding: 12px;
+
   border-radius: 4px var(--radius-md) var(--radius-md) 4px;
+
   font-size: 0.82rem;
+
   line-height: 1.45;
+
   color: var(--text-main);
+
   display: flex;
+
   flex-direction: column;
+
   gap: 8px;
+
+  margin-top: 12px;
+
   margin-bottom: 12px;
 }
 
@@ -315,23 +685,41 @@ body {
   color: var(--primary);
 }
 
+/* =========================================================
+   KEY STAGE TABLE
+========================================================= */
+
 .ks-table {
   display: flex;
+
   flex-direction: column;
+
   background: #f8fafc;
+
   border: 1px solid var(--border);
+
   border-radius: var(--radius-md);
-  margin-top: 12px;
+
   overflow: hidden;
 }
 
 .ks-row {
   display: grid;
-  grid-template-columns: 1fr 1.8fr 1fr;
+
+  grid-template-columns:
+    1fr
+    1.8fr
+    1fr;
+
   padding: 12px;
+
   font-size: 0.8rem;
+
   border-bottom: 1px solid var(--border);
+
   align-items: center;
+
+  gap: 6px;
 }
 
 .ks-row:last-child {
@@ -340,99 +728,220 @@ body {
 
 .header-row {
   background: #f1f5f9;
+
   font-weight: 700;
+
   color: var(--text-main);
+
   text-transform: uppercase;
+
   font-size: 0.7rem;
+
   letter-spacing: 0.03em;
 }
 
-.footer {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  padding: 12px 0;
-}
+/* =========================================================
+   FOOTER
+========================================================= */
 
-.fade-in {
-  animation: fadeInEffect 0.25s ease-out forwards;
-}
-
-@keyframes fadeInEffect {
-  from {
-    opacity: 0;
-    transform: translateY(3px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-/* Modern Signature Footer */
 .footer-modern {
   display: flex;
+
   justify-content: space-between;
+
   align-items: center;
+
   padding: 12px 6px;
+
   margin-top: 8px;
+
+  gap: 12px;
 }
 
 .dev-info {
   display: flex;
+
   flex-direction: column;
+
   gap: 2px;
 }
 
 .dev-name {
   font-size: 0.9rem;
+
   font-weight: 700;
+
   color: var(--text-main);
 }
 
 .dev-tag {
   color: var(--text-muted);
+
   font-weight: 500;
+
   font-size: 0.8rem;
 }
 
 .dev-copy {
   font-size: 0.75rem;
+
   color: var(--text-muted);
 }
 
-/* Tap-Friendly WhatsApp Action Button */
+/* =========================================================
+   WHATSAPP BUTTON
+========================================================= */
+
 .whatsapp-btn {
   display: flex;
+
   align-items: center;
+
   gap: 6px;
-  background-color: #22c55e; /* Premium WhatsApp Green */
+
+  background-color: #22c55e;
+
   color: #ffffff;
+
   text-decoration: none;
+
   padding: 8px 14px;
+
   border-radius: 20px;
+
   font-size: 0.8rem;
+
   font-weight: 700;
+
   box-shadow: 0 2px 4px rgba(34, 197, 94, 0.2);
+
   transition:
     transform 0.2s ease,
     background-color 0.2s ease;
 }
 
+.whatsapp-btn:hover {
+  background-color: #16a34a;
+}
+
 .whatsapp-btn:active {
   transform: scale(0.96);
+
   background-color: #16a34a;
 }
 
 .wa-icon {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+
+  height: 18px;
+
+  display: inline-block;
+
+  vertical-align: middle;
 }
 
-.footer-link {
-  color: var(--primary);
-  text-decoration: none;
-  font-weight: 600;
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+
+.fade-in {
+  animation: fadeInEffect 0.25s ease-out forwards;
 }
-.footer-link:hover {
-  text-decoration: underline;
+
+.scale-down {
+  animation: scaleDownEffect 0.2s ease-out forwards;
+}
+
+@keyframes fadeInEffect {
+  from {
+    opacity: 0;
+
+    transform: translateY(3px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleDownEffect {
+  from {
+    opacity: 0;
+
+    transform: scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 380px) {
+  body {
+    padding: 10px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .header h1 {
+    font-size: 1.4rem;
+  }
+
+  .date-select-row {
+    grid-template-columns:
+      0.8fr
+      1.6fr
+      1fr;
+
+    gap: 6px;
+  }
+
+  .date-part {
+    padding: 0 7px;
+
+    font-size: 0.85rem;
+  }
+
+  .age-banner,
+  .group-banner {
+    padding: 10px;
+  }
+
+  .age-badges-row {
+    gap: 4px;
+  }
+
+  .badge {
+    padding: 4px 6px;
+  }
+
+  .badge .num {
+    font-size: 1rem;
+  }
+
+  .badge .unit {
+    font-size: 0.7rem;
+  }
+
+  .format-hint {
+    font-size: 0.65rem;
+  }
+
+  .whatsapp-btn {
+    padding: 8px 10px;
+  }
+
+  .whatsapp-btn span {
+    font-size: 0.75rem;
+  }
 }
